@@ -1,0 +1,50 @@
+import json
+
+#FUNCIONES PARA AÑADIR Y ELIMINAR AISTENTES DE UNA QUEDADA
+
+def add_asistente_quedada(cid, uname):
+    with open('Database/q/%s/base.json' %str(cid), 'r') as basefile:
+        base = load.json(basefile)
+        base['asistentes'].append(uname)
+
+    with open('Database/q/%s/base.json' %str(cid), 'w') as basefile:
+        json.dump(base, basefile, indent = 2)
+
+def exist_asistente_quedada(cid, uname):
+    with open('Database/q/%s/base.json' %str(cid), 'r') as basefile:
+        base = load.json(basefile)
+        for userid in base['asistentes']:
+            if userid == uname: return True
+        else: False
+
+def delete_asistente_quedada(cid, uname):
+    with open('Database/q/%s/base.json' %str(cid), 'r') as basefile:
+        base = load.json(basefile)
+        base['asistentes'].remove(uname)
+
+    with open('Database/q/%s/base.json' %str(cid), 'w') as basefile:
+        jason.dump(base, basefile, indent = 2)
+
+
+#FUNCION ESTABLECER LUGAR QUEDADA
+
+def add_lugar(cid, lugar):
+    with open('Database/q/%s/base.json' %str(cid), 'r') as lugarquedadafile:
+        base = json.load(lugarquedadafile)
+        base['lugar'].append(lugar)
+
+
+    with open('Database/q/%s/base.json' %str(cid), 'w') as lugarquedadafile:
+        json.dump(base, lugarquedadafile, indent= 2)
+
+
+#FUNCION ESTABLECER FECHA QUEDADA
+
+def add_fecha(cid, fecha):
+    with open('Database/q/%s/base.json' %str(cid), 'r') as fechaquedadafile:
+        base = json.load(fechaquedadafile)
+        base['fecha'].append(fecha)
+
+
+    with open('Database/q/%s/base.json' %str(cid), 'w') as fechaquedadafile:
+        json.dump(base, fechaquedadafile, indent= 2)

@@ -25,6 +25,8 @@ def del_item_compra(cid, item):
     with open('Database/f/%s/compra.json' %str(cid), 'r') as itemcompra:
         json.dump(compras, itemcompra, indent = 2)
 
+    #La siguiente función añade una petición de un usuario.
+
 def add_peticion(cid, uid, peticion):
     with open('Database/f/%s/peticiones.json' %str(cid), 'r') as peticionesfile:
         peticiones = json.load(peticionesfile)
@@ -32,6 +34,8 @@ def add_peticion(cid, uid, peticion):
 
     with open('Database/f/%s/peticiones.json' %str(cid), 'r') as peticionesfile:
         json.dump(peticiones, peticionesfile, indent = 2)
+
+    #La siguiente función imprime todas las peticiones.
 
 def print_peticiones(cid, uid):
     with open('Database/f/%s/peticiones.json' %str(cid), 'r') as peticionesfile:
@@ -42,3 +46,13 @@ def print_peticiones(cid, uid):
             cadena += str(num) + ': ' + peti_de_u + '\n'
             num += 1
     return cadena
+
+    #La siguiente función borra la petición aportada por el user.
+
+def del_peticion(cid, uid, peticion):
+    with open('Database/f/%s/peticiones.json' %str(cid), 'r') as peticionesfile:
+        peticiones = json.load(peticionesfile)
+        peticiones['list_music'][uid].remove(peticion)
+
+    with open('Database/f/%s/peticiones.json' %str(cid), 'w') as peticionesfile:
+        json.dump(peticiones, peticionesfile, indent = 2)

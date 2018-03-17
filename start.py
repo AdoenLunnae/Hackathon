@@ -5,6 +5,8 @@ import os
 import json
 
 os.mkdir('Database')
+os.mkdir('Database/q')
+os.mkdir('Database/f')
 with open('Database/quedadas.json', 'w') as f:
     data = {'list_quedadas': []}
     json.dump(data, f)

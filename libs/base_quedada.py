@@ -51,3 +51,13 @@ def add_fecha(cid, fecha):
 
     with open('Database/q/%s/base.json' %str(cid), 'w') as fechaquedadafile:
         json.dump(base, fechaquedadafile, indent= 2)
+
+#FUNCIÓN ESTABLECER HORA QUEDADA
+
+def add_hora(cid, hora):
+    with open('Database/q/%s/base.json' %str(cid), 'r') as horaquedadafile:
+        base = json.load(horaquedadafile)
+        base['hora'].append(hora)
+
+    with open('Database/q/%s/base.json' %str(cid), 'w') as horaquedadafile:
+        json.dump(base, horaquedadafile, indent = 2)        

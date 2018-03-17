@@ -20,6 +20,10 @@ def add_fiesta(cid):
         data = {"list_compra" : {}}
         json.dump(data, comprasfile)
 
+    with open('Database/f/%s/peticiones.json' %str(cid), 'w') as peticionesfile:
+        data= {"list_music" : {}}
+        json.dump(data, musicafile)
+
 
 #Para borrar una fiesta primero debemos comprobar si existe una fiesta creada en el chat.
 

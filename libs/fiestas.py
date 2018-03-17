@@ -16,7 +16,7 @@ def add_fiesta(cid):
         data = {"asistentes" : [], "lugar" : "", "fecha" : ""}
         json.dump(data, basefile, indent = 2)
 
-    with open('Database/f/%s/compra.json' %str(cid), 'w') as comprasfile
+    with open('Database/f/%s/compra.json' %str(cid), 'w') as comprasfile:
         data = {"list_compra" : {}}
         json.dump(data, comprasfile)
 

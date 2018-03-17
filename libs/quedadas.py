@@ -15,3 +15,25 @@ def add_quedada(cid):
     with open('Database/q/%s/base.json' %str(cid), 'w') as basefile:
         data = {"asistentes" : [], "lugar" : "", "fecha" : ""}
         json.dump(data, basefile)
+
+
+def exist_quedada(cid):
+    with open('Database/quedadas.json', 'r') as quedadasfile:
+        quedadas = json.load(quedadasfile)['list_quedadas']
+        if cid in quedadas:
+            return True
+        else:
+            return False
+
+
+def delete_quedada(cid):
+    with open('Database/quedadas.json', 'r') as quedadasfile:
+        quedadas = json.load(quedadasfile)
+        for id_quedada_chat in quedadas['list_quedadas']:
+            if cid == int(id_quedada_chat):
+                quedadas['list_quedadas'].remove(id_quedada_chat)
+
+    with open('Database/quedadas.json', 'w') as quedadasfile:
+        json.dump(quedadas, quedadasfile)
+
+    shutil.rmtree('Database/q/%s' %str(cid))

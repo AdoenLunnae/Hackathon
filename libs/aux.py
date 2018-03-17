@@ -1,6 +1,6 @@
 # !/usr/bin/env python
 # -*- coding:utf-8 -*-
-
+import json
 
 def is_date(date):
     lst = date.split('/')
@@ -11,4 +11,5 @@ def is_date(date):
 
 def get_arg(message):
     lst = message.split(' ')
-    return lst[1]
+    if len(lst) == 2:
+        return lst[1]

@@ -13,7 +13,7 @@ def add_quedada(cid):
     os.mkdir('Database/q/%s' %str(cid))
 
     with open('Database/q/%s/base.json' %str(cid), 'w') as basefile:
-        data = {"asistentes" : [], "lugar" : "", "fecha" : ""}
+        data = {"asistentes" : [], "lugar" : "", "fecha" : "", "hora" : ""}
         json.dump(data, basefile, indent = 2)
 
 

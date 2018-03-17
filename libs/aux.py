@@ -7,3 +7,8 @@ def is_date(date):
     if lst.len() == 2:
         if lst[0].len <= 2 & lst[1].len <= 2:
             return lst[0].isdigit() & lst[1].isdigit()
+
+
+def get_arg(message):
+    lst = message.split(' ')
+    return lst[1]

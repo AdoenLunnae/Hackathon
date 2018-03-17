@@ -18,5 +18,5 @@ def delete_asistente_quedadas(cid, uid):
         base = load.json(basefile)
         base['asistentes'].remove(uid)
 
-    with open('Database/q/%s/base.json' %str(cid), 'r') as basefile:
+    with open('Database/q/%s/base.json' %str(cid), 'w') as basefile:
         jason.dump(base, basefile, indent = 2)

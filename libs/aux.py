@@ -4,8 +4,8 @@ import json
 
 def is_date(date):
     lst = date.split('/')
-    if lst.len() == 2:
-        if lst[0].len <= 2 & lst[1].len <= 2:
+    if len(lst) == 2:
+        if len(lst[0]) <= 2 & len(lst[1]) <= 2:
             return lst[0].isdigit() & lst[1].isdigit()
 
 
@@ -35,7 +35,7 @@ def get_info(cid, type):
         with open('Database/q/%s/base.json' %str(cid), 'r') as file:
             base = json.load(file)
             asist = base['asistentes']
-            asiststr = asist.join(', ')
+            asiststr = ', '.join(asist)
             fecha = base['fecha']
             hora = base['hora']
             lugar = base['lugar']
@@ -46,6 +46,6 @@ def get_info(cid, type):
 
 def is_time(time):
     lst = time.split(':')
-    if lst.len() == 2:
-        if lst[0].len <= 2 & lst[1].len <= 2:
+    if len(lst) == 2:
+        if len(lst[0])<= 2 & len(lst[0]) <= 2:
             return lst[0].isdigit() & lst[1].isdigit()

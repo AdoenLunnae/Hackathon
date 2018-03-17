@@ -36,7 +36,7 @@ def delete_asistente_quedada(cid, uname):
 def add_lugar(cid, lugar):
     with open('Database/q/%s/base.json' %str(cid), 'r') as lugarquedadafile:
         base = json.load(lugarquedadafile)
-        base['lugar'].append(lugar)
+        base['lugar']=lugar
 
 
     with open('Database/q/%s/base.json' %str(cid), 'w') as lugarquedadafile:
@@ -48,7 +48,7 @@ def add_lugar(cid, lugar):
 def add_fecha(cid, fecha):
     with open('Database/q/%s/base.json' %str(cid), 'r') as fechaquedadafile:
         base = json.load(fechaquedadafile)
-        base['fecha'].append(fecha)
+        base['fecha']=fecha
 
 
     with open('Database/q/%s/base.json' %str(cid), 'w') as fechaquedadafile:
@@ -59,7 +59,7 @@ def add_fecha(cid, fecha):
 def add_hora(cid, hora):
     with open('Database/q/%s/base.json' %str(cid), 'r') as horaquedadafile:
         base = json.load(horaquedadafile)
-        base['hora'].append(hora)
+        base['hora']=hora
 
     with open('Database/q/%s/base.json' %str(cid), 'w') as horaquedadafile:
         json.dump(base, horaquedadafile, indent = 2)

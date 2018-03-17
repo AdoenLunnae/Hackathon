@@ -36,7 +36,7 @@ def delete_asistente_fiesta(cid, uname):
 def add_lugar(cid, lugar):
     with open('Database/f/%s/base.json' %str(cid), 'r') as lugarfiestafile:
         base = json.load(lugarfiestafile)
-        base['lugar'].append(lugar)
+        base['lugar']=lugar
 
 
     with open('Database/f/%s/base.json' %str(cid), 'w') as lugarfiestafile:
@@ -48,7 +48,7 @@ def add_lugar(cid, lugar):
 def add_fecha(cid, fecha):
     with open('Database/f/%s/base.json' % str(cid), 'r') as fechafiestafile:
         base = json.load(fechafiestafile)
-        base['fecha'].append(fecha)
+        base['fecha']=fecha
 
 
     with open('Database/f/%s/base.json' %str(cid), 'w') as fechafiestafile:

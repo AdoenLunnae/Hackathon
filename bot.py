@@ -45,7 +45,7 @@ def delete(m):
     if arg == 'fiesta':
         if f.exist_fiesta(cid):
             f.delete_fiesta(cid)
-            send(m, 'Fiesta eliminada correctamente')
+            send(m, 'Quedada eliminada correctamente')
         else:
             send(m, 'No hay fiesta creada')
     elif arg == 'quedada':
@@ -101,7 +101,7 @@ def leave(m):
 def info(m):
     arg = aux.get_arg(m.text)
     cid=m.chat.id
-    if arg == 'fiesta' | arg=='quedada':
+    if (arg == 'fiesta') or (arg=='quedada'):
         send(m, aux.get_info(cid, arg))
     else:
         send(m, 'Usa /info + "fiesta" o "quedada"')

@@ -1,10 +1,11 @@
+#-*-coding:utf-8-*-
 import json
 
-#FUNCIONES PARA AÑADIR Y ELIMINAR AISTENTES DE UNA QUEDADA
+# FUNCIONES PARA AÑADIR Y ELIMINAR AISTENTES DE UNA QUEDADA
 
 def add_asistente_quedada(cid, uname):
     with open('Database/q/%s/base.json' %str(cid), 'r') as basefile:
-        base = load.json(basefile)
+        base = json.load(basefile)
         base['asistentes'].append(uname)
 
     with open('Database/q/%s/base.json' %str(cid), 'w') as basefile:
@@ -12,18 +13,20 @@ def add_asistente_quedada(cid, uname):
 
 def exist_asistente_quedada(cid, uname):
     with open('Database/q/%s/base.json' %str(cid), 'r') as basefile:
-        base = load.json(basefile)
+        base = json.load(basefile)
         for userid in base['asistentes']:
-            if userid == uname: return True
-        else: False
+            if userid == uname:
+                return True
+        else:
+            return False
 
 def delete_asistente_quedada(cid, uname):
     with open('Database/q/%s/base.json' %str(cid), 'r') as basefile:
-        base = load.json(basefile)
+        base = json.load(basefile)
         base['asistentes'].remove(uname)
 
     with open('Database/q/%s/base.json' %str(cid), 'w') as basefile:
-        jason.dump(base, basefile, indent = 2)
+        json.dump(base, basefile, indent = 2)
 
 
 #FUNCION ESTABLECER LUGAR QUEDADA

@@ -8,13 +8,13 @@ def add_quedada(cid):
         id_quedada_chat['list_quedadas'].append(cid)
 
     with open('Database/quedadas.json', 'w') as quedadasfile:
-        json.dump(id_quedada_chat, quedadasfile)
+        json.dump(id_quedada_chat, quedadasfile, indent = 2)
 
     os.mkdir('Database/q/%s' %str(cid))
 
     with open('Database/q/%s/base.json' %str(cid), 'w') as basefile:
         data = {"asistentes" : [], "lugar" : "", "fecha" : ""}
-        json.dump(data, basefile)
+        json.dump(data, basefile, indent = 2)
 
 
 def exist_quedada(cid):
@@ -34,6 +34,6 @@ def delete_quedada(cid):
                 quedadas['list_quedadas'].remove(id_quedada_chat)
 
     with open('Database/quedadas.json', 'w') as quedadasfile:
-        json.dump(quedadas, quedadasfile)
+        json.dump(quedadas, quedadasfile, indent = 2)
 
     shutil.rmtree('Database/q/%s' %str(cid))

@@ -8,6 +8,8 @@ from libs import quedadas as q
 
 token = tk.get_token()
 bot = telebot.TeleBot(token)
+
+
 def send(m, text):
     bot.send_message(m.chat.id, text)
 
@@ -15,31 +17,41 @@ def send(m, text):
 @bot.message_handler(commands='cr_party')
 def create_party(m):
     cid=m.chat.id
-    uid=m.from_user.id
-    user=m.from_user.first_name
-    if f.exists_party(cid):
+    if f.existe_fiesta(cid):
         send(cid, 'Ya hay una fiesta creada')
     else:
         f.add_fiesta(cid)
         send(cid, 'Fiesta creada con éxito')
 
+
 @bot.message_handler(commands='cr_quedada')
 def create_quedada(m):
-    cid=m.chat.id
-    uid=m.from_user.id
-    user=m.from_user.first_name
-    if q.exists_quedada(cid):
+    cid = m.chat.id
+    if q.existe_quedada(cid):
         send(cid, 'Ya hay una fiesta creada')
     else:
         q.add_quedada(cid)
         send(cid, 'Fiesta creada con éxito')
 
+
 @bot.message_handler(commands='del_party')
-def delete_party():
-    pass
+def delete_party(m):
+    cid = m.chat.id
+    if f.existe_fiesta(cid):
+        f.delete_fiesta(cid)
+        send(cid, 'Fiesta eliminada correctamente')
+    else:
+        send(cid, 'No hay fiesta creada')
 
 
-
+@bot.message_handler(commands='del_quedada')
+def delete_quedada(m):
+    cid = m.chat.id
+    if q.existe_quedada(cid):
+        q.delete_quedada(cid)
+        send(cid, 'Quedada eliminada correctamente')
+    else:
+        send(cid, 'No hay quedada creada')
 
 
 bot.polling()

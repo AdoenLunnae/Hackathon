@@ -16,8 +16,8 @@ def send(m, text):
 
 @bot.message_handler(commands='cr_party')
 def create_party(m):
-    cid=m.chat.id
-    if f.existe_fiesta(cid):
+    cid = m.chat.id
+    if f.exist_fiesta(cid):
         send(cid, 'Ya hay una fiesta creada')
     else:
         f.add_fiesta(cid)
@@ -27,7 +27,7 @@ def create_party(m):
 @bot.message_handler(commands='cr_quedada')
 def create_quedada(m):
     cid = m.chat.id
-    if q.existe_quedada(cid):
+    if q.exist_quedada(cid):
         send(cid, 'Ya hay una fiesta creada')
     else:
         q.add_quedada(cid)
@@ -37,7 +37,7 @@ def create_quedada(m):
 @bot.message_handler(commands='del_party')
 def delete_party(m):
     cid = m.chat.id
-    if f.existe_fiesta(cid):
+    if f.exist_fiesta(cid):
         f.delete_fiesta(cid)
         send(cid, 'Fiesta eliminada correctamente')
     else:
@@ -47,7 +47,7 @@ def delete_party(m):
 @bot.message_handler(commands='del_quedada')
 def delete_quedada(m):
     cid = m.chat.id
-    if q.existe_quedada(cid):
+    if q.exist_quedada(cid):
         q.delete_quedada(cid)
         send(cid, 'Quedada eliminada correctamente')
     else:

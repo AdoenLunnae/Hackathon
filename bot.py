@@ -4,7 +4,12 @@ import telebot
 import private as tk
 from libs import fiestas as f
 from libs import quedadas as q
-
+from libs import aux
+from libs import lugarfiestas as lf
+from libs import lugarquedadas as lq
+from libs import fechasfiestas as ff
+from libs import fechasquedadas as fq
+from libs import AsistentesQuedadas as aq
 
 token = tk.get_token()
 bot = telebot.TeleBot(token)
@@ -28,10 +33,10 @@ def create_party(m):
 def create_quedada(m):
     cid = m.chat.id
     if q.exist_quedada(cid):
-        send(m, 'Ya hay una fiesta creada')
+        send(m, 'Ya hay una quedada creada')
     else:
         q.add_quedada(cid)
-        send(m, 'Fiesta creada con éxito')
+        send(m, 'Quedada creada con éxito')
 
 
 @bot.message_handler(commands='del_party')
@@ -53,5 +58,15 @@ def delete_quedada(m):
     else:
         send(m, 'No hay quedada creada')
 
+
+@bot.message_handler(commands='info')
+def info(m):
+    arg = aux.get_arg(m.text)
+    if arg == 'fiesta':
+        pass
+    elif arg == 'quedada':
+        pass
+    else:
+        send(m, 'Usa /info + "fiesta" o "quedada"')
 
 bot.polling()

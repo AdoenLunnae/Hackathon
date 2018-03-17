@@ -1,6 +1,7 @@
 import json
 
 #FUNCIONES PARA LA LISTA DE LA COMPRA
+
 #La siguiente función añade un nuevo item a la lista de la compra.
 
 def add_item_compra(cid, item):

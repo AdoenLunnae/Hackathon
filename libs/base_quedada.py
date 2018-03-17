@@ -1,7 +1,7 @@
 #-*-coding:utf-8-*-
 import json
 
-# FUNCIONES PARA AÑADIR Y ELIMINAR AISTENTES DE UNA QUEDADA
+# La siguiente función añade asistentes a la quedada.
 
 def add_asistente_quedada(cid, uname):
     with open('Database/q/%s/base.json' %str(cid), 'r') as basefile:
@@ -10,6 +10,8 @@ def add_asistente_quedada(cid, uname):
 
     with open('Database/q/%s/base.json' %str(cid), 'w') as basefile:
         json.dump(base, basefile, indent = 2)
+
+# La siguiente función comprueba que existe un asistente para eliminarlo o no más tarde.
 
 def exist_asistente_quedada(cid, uname):
     with open('Database/q/%s/base.json' %str(cid), 'r') as basefile:
@@ -29,7 +31,7 @@ def delete_asistente_quedada(cid, uname):
         json.dump(base, basefile, indent = 2)
 
 
-#FUNCION ESTABLECER LUGAR QUEDADA
+# La siguiente función establece el lugar de la quedada.
 
 def add_lugar(cid, lugar):
     with open('Database/q/%s/base.json' %str(cid), 'r') as lugarquedadafile:
@@ -41,7 +43,7 @@ def add_lugar(cid, lugar):
         json.dump(base, lugarquedadafile, indent= 2)
 
 
-#FUNCION ESTABLECER FECHA QUEDADA
+#La siguiente función establece la fecha de la quedada.
 
 def add_fecha(cid, fecha):
     with open('Database/q/%s/base.json' %str(cid), 'r') as fechaquedadafile:
@@ -52,7 +54,7 @@ def add_fecha(cid, fecha):
     with open('Database/q/%s/base.json' %str(cid), 'w') as fechaquedadafile:
         json.dump(base, fechaquedadafile, indent= 2)
 
-#FUNCIÓN ESTABLECER HORA QUEDADA
+#La siguiente función establece la hora de la quedada.
 
 def add_hora(cid, hora):
     with open('Database/q/%s/base.json' %str(cid), 'r') as horaquedadafile:
@@ -60,4 +62,4 @@ def add_hora(cid, hora):
         base['hora'].append(hora)
 
     with open('Database/q/%s/base.json' %str(cid), 'w') as horaquedadafile:
-        json.dump(base, horaquedadafile, indent = 2)        
+        json.dump(base, horaquedadafile, indent = 2)

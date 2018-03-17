@@ -1,7 +1,7 @@
 # -*-coding:utf-8 -*-
 import json
 
-#FUNCIONES PARA AÑADIR Y ELMINAR ASISTENTES DE UNA FIESTA
+# Está función añade un asistente a la fiesta.
 
 def add_asistente_fiesta(cid, uname):
     with open('Database/f/%s/base.json' %str(cid), 'r') as basefile:
@@ -10,6 +10,8 @@ def add_asistente_fiesta(cid, uname):
 
     with open('Database/f/%s/base.json' %str(cid), 'w') as basefile:
         json.dump(base, basefile, indent = 2)
+
+# Las siguiente función comprueba si existe un asistente para después eliminarlo o no.
 
 def exist_asistente_fiesta(cid, uname):
     with open('Database/f/%s/base.json' %str(cid), 'r') as basefile:
@@ -29,7 +31,7 @@ def delete_asistente_fiesta(cid, uname):
         json.dump(base, basefile, indent = 2)
 
 
-#FUNCION PARA ESTABLECER LUGAR FIESTA
+# La siguiente función establece el lugar de la fiesta.
 
 def add_lugar(cid, lugar):
     with open('Database/f/%s/base.json' %str(cid), 'r') as lugarfiestafile:
@@ -41,7 +43,7 @@ def add_lugar(cid, lugar):
         json.dump(base, lugarfiestafile, indent= 2)
 
 
-#FUNCION PARA ESTABLECER FECHA FIESTA
+# La siguiente función establece la fecha de la fiesta.
 
 def add_fecha(cid, fecha):
     with open('Database/f/%s/base.json' % str(cid), 'r') as fechafiestafile:

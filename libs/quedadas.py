@@ -1,6 +1,9 @@
+#-*-coding:utf-8-*-
 import json
 import os
 import shutil
+
+#La siguiente función añade una quedada en el chat.
 
 def add_quedada(cid):
     with open('Database/quedadas.json', 'r') as quedadasfile:
@@ -16,6 +19,7 @@ def add_quedada(cid):
         data = {"asistentes" : [], "lugar" : "", "fecha" : "", "hora" : ""}
         json.dump(data, basefile, indent = 2)
 
+# Para eliminar una quedada primero comprobaremos si existe.
 
 def exist_quedada(cid):
     with open('Database/quedadas.json', 'r') as quedadasfile:
@@ -25,6 +29,7 @@ def exist_quedada(cid):
         else:
             return False
 
+# A continuación, borraremos la quedada.
 
 def delete_quedada(cid):
     with open('Database/quedadas.json', 'r') as quedadasfile:

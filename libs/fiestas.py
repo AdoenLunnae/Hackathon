@@ -1,6 +1,9 @@
+#-*-coding:utf-8-*-
 import json
 import os
 import shutil
+
+# La siguiente función añade una fiesta en el chat.
 
 def add_fiesta(cid):
     with open('Database/fiestas.json', 'r') as fiestasfile:
@@ -25,7 +28,7 @@ def add_fiesta(cid):
         json.dump(data, musicafile)
 
 
-#Para borrar una fiesta primero debemos comprobar si existe una fiesta creada en el chat.
+# Para borrar una fiesta primero debemos comprobar si existe una fiesta creada en el chat.
 
 def exist_fiesta(cid):
     with open('Database/fiestas.json', 'r') as fiestasfile:

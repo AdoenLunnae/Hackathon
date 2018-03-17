@@ -2,21 +2,19 @@ import json
 import os
 import shutil
 
-
-
 def add_fiesta(cid):
     with open('Database/fiestas.json', 'r') as fiestasfile:
         id_fiesta_chat = json.load(fiestasfile)
         id_fiesta_chat['list_fiestas'].append(cid)
 
     with open('Database/fiestas.json', 'w') as fiestasfile:
-        json.dump(id_fiesta_chat, fiestasfile)
+        json.dump(id_fiesta_chat, fiestasfile, indent = 2)
 
     os.mkdir('Database/f/%s' %str(cid))
 
     with open('Database/f/%s/base.json' %str(cid), 'w') as basefile:
         data = {"asistentes" : [], "lugar" : "", "fecha" : ""}
-        json.dump(data, basefile)
+        json.dump(data, basefile, indent = 2)
 
 #Para borrar una fiesta primero debemos comprobar si existe una fiesta creada en el chat.
 
@@ -41,12 +39,8 @@ def delete_fiesta(cid):
 #Sobreescribimos el diccionario.
 
     with open('Database/fiestas.json', 'w') as fiestasfile:
-        json.dump(fiestas, fiestasfile)
+        json.dump(fiestas, fiestasfile, indent = 2)
 
 #Borramos la carpeta creada al crear una fiesta, con sus archivos.
 
     shutil.rmtree('Database/f/%s' %str(cid))
-
-
-
-

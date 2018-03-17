@@ -7,8 +7,9 @@ from libs import quedadas as q
 from libs import aux
 from libs import base_quedada as bq
 from libs import base_fiesta as bf
+from libs import extras_fiesta as ef
 
-token = tk.get_token()
+token = tk.token
 bot = telebot.TeleBot(token)
 
 
@@ -99,11 +100,105 @@ def leave(m):
 @bot.message_handler(commands='info')
 def info(m):
     arg = aux.get_arg(m.text)
-    if arg == 'fiesta':
-        pass
-    elif arg == 'quedada':
-        pass
+    cid=m.chat.id
+    if arg == 'fiesta' | arg=='quedada':
+        send(m, aux.get_info(cid, arg))
     else:
         send(m, 'Usa /info + "fiesta" o "quedada"')
+
+@bot.message_handler(commands='date')
+def date(m):
+    cid = m.chat.id
+    type, date=aux.get_arg2(m.text)
+    if aux.is_date(date):
+        if type=='fiesta':
+            if f.exist_fiesta(cid):
+                bf.add_fecha(cid, date)
+            else:
+                send('La fiesta no está creada')
+        elif type=='quedada':
+            if q.exist_quedada(cid):
+                bq.add_fecha(cid, date)
+            else:
+                send(m, 'La quedada no existe')
+    else:
+        send(m, 'Usa /date + "fiesta" o "quedada" + fecha(DD/MM)')
+
+@bot.message_handler(commands= 'place' )
+def place(m):
+    cid = m.chat.id
+    type, date = aux.get_arg2(m.text)
+    if type == 'fiesta':
+        if f.exist_fiesta(cid):
+            bf.add_lugar(cid, date)
+        else:
+            send('La fiesta no está creada')
+    elif type == 'quedada':
+        if q.exist_quedada(cid):
+            bq.add_lugar(cid, date)
+        else:
+            send(m, 'La quedada no existe')
+    else:
+        send(m, 'Usa /date + "fiesta" o "quedada" + lugar')
+
+@bot.message_handler(commands= 'time')
+def time(m):
+    cid=m.chat.id
+    time=aux.get_arg(m.text)
+    if aux.is_time(time):
+        if q.exist_quedada(cid):
+            bq.add_hora(cid, time)
+        else:
+            send(m, 'La quedada no existe')
+    else:
+        send(m, 'Usa /time + hora(HH:MM)')
+
+
+@bot.message_handler(commands='lista')
+def lista(m):
+    cid=m.chat.cid
+    action, item=aux.get_arg2(m.text)
+    if action=='add':
+        if f.exist_fiesta(cid):
+            ef.add_item_compra(cid, item)
+        else:
+            send(m, 'La fiesta no existe')
+    elif action=='mark':
+        if f.exist_fiesta(cid):
+            ef.check_item_compra(cid, item)
+        else:
+            send(m, 'La fiesta no existe')
+    elif action == 'remove':
+        if f.exist_fiesta(cid):
+            ef.del_item_compra(cid, item)
+        else:
+            send(m, 'La fiesta no existe')
+    else:
+        send(m, 'Usa /lista + "add"/"mark"/"remove" + item')
+
+@bot.message_handler(commands='music')
+def musica(m):
+    cid = m.chat.cid
+    action, item = aux.get_arg2(m.text)
+    uid= m.from_user.uid
+    if action == 'add':
+        if f.exist_fiesta(cid):
+            ef.add_peticion(cid, item)
+        else:
+            send(m, 'La fiesta no existe')
+    elif action == 'view':
+        if f.exist_fiesta(cid):
+            ef.print_peticiones(cid, uid)
+        else:
+            send(m, 'La fiesta no existe')
+    elif action == 'remove':
+        if f.exist_fiesta(cid):
+            ef.del_peticion(cid, item)
+        else:
+            send(m, 'La fiesta no existe')
+    else:
+        send(m, 'Usa /lista + "add"+titulo/"view"/"remove"+posicion ')
+
+
 
 bot.polling()

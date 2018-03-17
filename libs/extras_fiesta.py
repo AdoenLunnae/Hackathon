@@ -1,3 +1,5 @@
+# -*- coding:utf-8 -*-
+
 import json
 
 #FUNCIONES PARA LA LISTA DE LA COMPRA

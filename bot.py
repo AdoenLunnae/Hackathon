@@ -85,69 +85,73 @@ def leave(m):
     if arg == 'fiesta':
         if bf.exist_asistente_fiesta(cid, uname):
             bf.delete_asistente_fiesta(cid, uname)
-            send(m, uname+ ' ha dejado la fiesta')
+            send(m, uname + ' ha dejado la fiesta')
         else:
             send(m, 'No te habías unido a la fiesta')
     elif arg == 'quedada':
         if bq.exist_asistente_quedada(cid, uname):
             bq.delete_asistente_quedada(cid, uname)
-            send(m, uname+ ' ha dejado la quedada')
+            send(m, uname + ' ha dejado la quedada')
         else:
             send(m, 'No te habías unido a la quedada')
     else:
         send(m, 'Usa /leave + "fiesta" o "quedada"')
 
+
 @bot.message_handler(commands='info')
 def info(m):
     arg = aux.get_arg(m.text)
-    cid=m.chat.id
-    if (arg == 'fiesta') or (arg=='quedada'):
+    cid = m.chat.id
+    if (arg == 'fiesta') or (arg == 'quedada'):
         send(m, aux.get_info(cid, arg))
     else:
         send(m, 'Usa /info + "fiesta" o "quedada"')
 
+
 @bot.message_handler(commands='date')
 def date(m):
     cid = m.chat.id
-    type, date=aux.get_arg2(m.text)
-    if aux.is_date(date):
-        if type=='fiesta':
+    type_, date_ = aux.get_arg2(m.text)
+    if aux.is_date(date_):
+        if type_ == 'fiesta':
             if f.exist_fiesta(cid):
-                bf.add_fecha(cid, date)
+                bf.add_fecha(cid, date_)
             else:
-                send('La fiesta no está creada')
-        elif type=='quedada':
+                send(m, 'La fiesta no está creada')
+        elif type_ == 'quedada':
             if q.exist_quedada(cid):
-                bq.add_fecha(cid, date)
+                bq.add_fecha(cid, date_)
             else:
                 send(m, 'La quedada no existe')
     else:
         send(m, 'Usa /date + "fiesta" o "quedada" + fecha(DD/MM)')
 
-@bot.message_handler(commands= 'place' )
+
+@bot.message_handler(commands='place')
 def place(m):
     cid = m.chat.id
-    type, date = aux.get_arg2(m.text)
-    if type == 'fiesta':
+    type_, date_ = aux.get_arg2(m.text)
+    if type_ == 'fiesta':
         if f.exist_fiesta(cid):
-            bf.add_lugar(cid, date)
+            bf.add_lugar(cid, date_)
         else:
-            send('La fiesta no está creada')
-    elif type == 'quedada':
+            send(m, 'La fiesta no está creada')
+    elif type_ == 'quedada':
         if q.exist_quedada(cid):
-            bq.add_lugar(cid, date)
+            bq.add_lugar(cid, date_)
         else:
             send(m, 'La quedada no existe')
     else:
         send(m, 'Usa /date + "fiesta" o "quedada" + lugar')
 
-@bot.message_handler(commands= 'time')
+
+@bot.message_handler(commands='time')
 def time(m):
-    cid=m.chat.id
-    time=aux.get_arg(m.text)
-    if aux.is_time(time):
+    cid = m.chat.id
+    hour = aux.get_arg(m.text)
+    if aux.is_time(hour):
         if q.exist_quedada(cid):
-            bq.add_hora(cid, time)
+            bq.add_hora(cid, hour)
         else:
             send(m, 'La quedada no existe')
     else:
@@ -156,14 +160,14 @@ def time(m):
 
 @bot.message_handler(commands='lista')
 def lista(m):
-    cid=m.chat.cid
-    action, item=aux.get_arg2(m.text)
-    if action=='add':
+    cid = m.chat.cid
+    action, item = aux.get_arg2(m.text)
+    if action == 'add':
         if f.exist_fiesta(cid):
             ef.add_item_compra(cid, item)
         else:
             send(m, 'La fiesta no existe')
-    elif action=='mark':
+    elif action == 'mark':
         if f.exist_fiesta(cid):
             ef.check_item_compra(cid, item)
         else:
@@ -176,14 +180,15 @@ def lista(m):
     else:
         send(m, 'Usa /lista + "add"/"mark"/"remove" + item')
 
+
 @bot.message_handler(commands='music')
 def musica(m):
     cid = m.chat.cid
     action, item = aux.get_arg2(m.text)
-    uid= m.from_user.uid
+    uid = m.from_user.uid
     if action == 'add':
         if f.exist_fiesta(cid):
-            ef.add_peticion(cid, item)
+            ef.add_peticion(cid, uid, item)
         else:
             send(m, 'La fiesta no existe')
     elif action == 'view':
@@ -193,12 +198,11 @@ def musica(m):
             send(m, 'La fiesta no existe')
     elif action == 'remove':
         if f.exist_fiesta(cid):
-            ef.del_peticion(cid, item)
+            ef.del_peticion(cid, uid, item)
         else:
             send(m, 'La fiesta no existe')
     else:
         send(m, 'Usa /lista + "add"+titulo/"view"/"remove"+posicion ')
-
 
 
 bot.polling()

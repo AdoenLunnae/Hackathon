@@ -1,5 +1,8 @@
 import json
 
+#FUNCIONES PARA LA LISTA DE LA COMPRA
+#La siguiente función añade un nuevo item a la lista de la compra.
+
 def add_item_compra(cid, item):
     with open('Database/f/%s/compra.json' %str(cid), 'r') as itemcompra:
         compras = json.load(itemcompra)
@@ -25,7 +28,10 @@ def del_item_compra(cid, item):
     with open('Database/f/%s/compra.json' %str(cid), 'r') as itemcompra:
         json.dump(compras, itemcompra, indent = 2)
 
-    #La siguiente función añade una petición de un usuario.
+
+#FUNCIONES PARA LAS PETICIONES
+
+#La siguiente función añade una petición de un usuario.
 
 def add_peticion(cid, uid, peticion):
     with open('Database/f/%s/peticiones.json' %str(cid), 'r') as peticionesfile:
@@ -35,7 +41,7 @@ def add_peticion(cid, uid, peticion):
     with open('Database/f/%s/peticiones.json' %str(cid), 'r') as peticionesfile:
         json.dump(peticiones, peticionesfile, indent = 2)
 
-    #La siguiente función imprime todas las peticiones.
+#La siguiente función imprime todas las peticiones.
 
 def print_peticiones(cid, uid):
     with open('Database/f/%s/peticiones.json' %str(cid), 'r') as peticionesfile:
@@ -47,7 +53,7 @@ def print_peticiones(cid, uid):
             num += 1
     return cadena
 
-    #La siguiente función borra la petición aportada por el user.
+#La siguiente función borra la petición aportada por el user.
 
 def del_peticion(cid, uid, peticion):
     with open('Database/f/%s/peticiones.json' %str(cid), 'r') as peticionesfile:
